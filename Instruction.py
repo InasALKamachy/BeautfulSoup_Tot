@@ -20,8 +20,7 @@ turtle_data = {}
 for link in links:
   webpage = requests.get(link)
   turtle = BeautifulSoup(webpage.content, "html.parser")
-  #Add your code here:
-  turtle_name = turtle.select(".name")[0]
-  turtle_data[turtle_name] = []
+  turtle_name = turtle.select(".name")[0].get_text()
+  turtle_data[turtle_name] = turtle.find("ul").get_text("|").split("|")
   
 print(turtle_data)
